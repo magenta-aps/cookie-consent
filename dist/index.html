@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+	<meta charset='utf-8'>
+	<meta name='viewport' content='width=device-width,initial-scale=1'>
+
+	<title>Cookie consent example page</title>
+
+	<!-- Add Cookie Consent Component styles -->
+	<link rel='stylesheet' href='./cookie-consent.css'>
+
+	<!-- Your own styles -->
+	<link rel='stylesheet' href='./my-cc-theme.css'>
+
+	<!-- Configure the Cookie Consent Component -->
+	<script>
+		var cookie_consent_config = {
+			localStorageId: 'cookie-consent-5f7ed99b-14ec-42c2-b19b-86fe5eb9125c',
+			messages: { 
+				// These strings should be translated using whatever i18n system, you're using
+				title: 'Samtykke til brug af cookies',
+				introduction: 'Vi vil gerne gemme cookies i din browser til følgende formål:',
+				purposes: [
+					'Så Giant Corp(tm) kan lave analyse på webtrafik og andre ting, som vi faktisk ikke helt har styr på',
+					'Så Faceless(tm) kan samle data og give dig målrettede reklamer'
+				],
+				additionalInfo: 'Her bør der være et <a href="#">link til yderligere information.</a>',
+				acceptButtonTxt: 'Ja tak',
+				declineButtonTxt: 'Nej tak',
+				acceptedTxt: 'accepteret',
+				declinedTxt: 'afvist',
+				editConsent: 'Redigér samtykke',
+				revisionTitleDeclined: 'Øv! Du har ikke givet samtykke til cookies',
+				revisionAskToAccept: 'Vil du give samtykke til brug af cookies?',
+				revisionTitleAccepted: 'Hurra! Du har givet samtykke til cookies',
+				revisionAskToDecline: 'Har du fortrudt?',
+				revisionDeclineAction: 'Træk mit samtykke tilbage',
+				revisionCloseDiag: 'Luk dialogboks'
+			}
+		}
+	</script>
+
+	<!-- Load the Cookie Consent Component javascript -->
+	<!-- WHEN to load it will depend on what other scripts the page loads -->
+	<script defer src='./cookie-consent.js'></script>
+	
+</head>
+
+<body>
+
+	<script>
+		/* 
+		* EXAMPLE JAVASCRIPT
+		* If you want javascript to wait for user to give cookie consent,
+		* wrap your cookie-setting javascript in an event listener
+		* that checks for the 'consentgiven' event.
+		*/
+		document.addEventListener('consentgiven', function() {
+			document.getElementById('status').innerHTML = '<span style="color: darkgreen;"><em>consentgiven</em> event fired. Cookie dropping scripts would run now.</span>'
+			
+		})
+
+		// There is a 'consentdeclined' event for when the user declines consent
+		document.addEventListener('consentdeclined', function() {
+			document.getElementById('status').innerHTML = '<span style="color: darkred;"><em>consentdeclined</em> event fired. Stop or refrain from placing cookies with javascript.</span>'
+		})
+	</script>
+
+
+	<main>
+		<h1>Her er en webside</h1>
+		<p>Denne webside er klar til at dumpe en masse cookies i din browser. Er det noget for dig?</p>
+		<p id="status"></p>
+		<p><a href="./pages/chapter_1.html">Vil du vide hvorfor?</a></p>
+	</main>
+
+</body>
+</html>
