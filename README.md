@@ -8,6 +8,11 @@ This is an important detail becuse the ability to cancel consent is needed to co
 CCC fires a `consentgiven` or `consentdeclined` event when the user either accepts or declines cookie consent. 
 You can simply add listeners for these events to control cookie dumping javascript on your website.
 
+## Table of contents
+
+1. [How to deploy cookies and similar technologies legally](#how-to-deploy-cookies-and-similar-technologies-legally)
+2. [Deploying to the web](#deploying-to-the-web)
+3. [Develop your own Cookie Consent](#develop-your-own-cookie-consent)
 
 ## How to deploy cookies and similar technologies legally
 
