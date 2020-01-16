@@ -36,6 +36,7 @@ To make sure you get *informed* consent from your users, you need to ...
 To make sure you get *willing* consent from your users, you need to ...
 * Make it equally easy to accept or reject cookies
 * Enable users to retract consent
+* User must actively accept or reject (No default choices or pre-checked boxes)
 
 
 ## Deploying to the web
