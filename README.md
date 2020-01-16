@@ -35,7 +35,11 @@ To make sure you get *willing* consent from your users, you need to ...
 
 ## Deploying to the web
 
-1. Add configuration javascript. Add a global javascript variable named `cookie_consent_config` to every page where the CCC appears. A minimal configuration should include an ID string for your CCC and some details on the purposes of your stored items. The script can appear in the _head_ or _body_ section of the page **but it must be executed before cookie-consent.js**
+1. Add configuration javascript. Add a global javascript variable named `cookie_consent_config` to every page where the CCC appears. 
+
+A minimal configuration should include an ID string for your CCC and required legal information on the purposes of the stored data.
+
+The script can appear in the _head_ or _body_ section of the page **but it must be executed before cookie-consent.js**
 ```html
 <script>
     // This is a minimal configuration
@@ -242,9 +246,9 @@ Navigate to [localhost:5000](http://localhost:5000). You should see your app run
 By default, the server will only respond to requests from localhost. To allow connections from other computers, edit the `sirv` commands in package.json to include the option `--host 0.0.0.0`.
 
 
-## Building and running in production mode
+## Making a production build
 
-To create an optimised version of the app:
+To create an optimised version of the app for production deployment:
 
 ```bash
 npm run build
