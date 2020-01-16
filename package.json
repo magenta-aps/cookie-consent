@@ -1,6 +1,12 @@
 {
-  "name": "svelte-app",
+  "name": "magenta-cookie-consent",
+  "description": "The Cookie Consent Component (CCC) by Magenta asks users for permission to store information in their browser in a way that adheres to Danish and EU cookie regulations.",
   "version": "1.0.0",
+  "license" : "MPL-2.0",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/magenta-aps/cookie-consent.git"
+  },
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
