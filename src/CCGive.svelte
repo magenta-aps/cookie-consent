@@ -58,7 +58,7 @@
         <p class="cc-intro">{ $config.messages.introduction }</p>
         <ul class="cc-list">
             {#each $config.messages.purposes as purpose}
-                <li class="cc-list-item">{ purpose }</li>
+                <li class="cc-list-item">{ @html purpose }</li>
             {/each}
         </ul>
         <p class="cc-additional">{ @html $config.messages.additionalInfo }</p>
