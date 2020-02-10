@@ -11,6 +11,7 @@
     import { fly } from 'svelte/transition'
     import { consent, config } from './CCStore.js'
     import { sayYes, sayNo, dispatch, setConsent, ev_give, ev_decline } from './CCMixins.js'
+    import CookieList from './CookieList.svelte';
 
 	// Data
 	let toggle = false
@@ -48,6 +49,7 @@
         {#if $consent}
             <h2 id="revise-consent-title" class="cc-title">{ $config.messages.revisionTitleAccepted }</h2>
             <p class="cc-additional">{ @html $config.messages.additionalInfo }</p>
+            <CookieList data={$config.messages.purposes}/>
             <p class="cc-ask-again">{ $config.messages.revisionAskToDecline }</p>
             <p class="cc-actions">
                 <button aria-controls="cookie-consent-diag" on:click={ sayNoAgain } class="cc-decline">{ $config.messages.revisionDeclineAction }</button>
@@ -55,6 +57,7 @@
         {:else}
             <h2 id="revise-consent-title" class="cc-title">{ $config.messages.revisionTitleDeclined }</h2>
             <p class="cc-additional">{ @html $config.messages.additionalInfo }</p>
+            <CookieList data={$config.messages.purposes}/>
             <p class="cc-ask-again">{ $config.messages.revisionAskToAccept }</p>
             <p class="cc-actions">
                 <button aria-controls="cookie-consent-diag" on:click={ sayYesAgain } class="cc-accept">{ $config.messages.acceptButtonTxt }</button>

@@ -11,9 +11,8 @@
     import { onMount } from 'svelte'
     import { fly } from 'svelte/transition'
     import { sayYes, sayNo, dispatch, setConsent, ev_give, ev_decline } from './CCMixins.js'
-	
-	// Props
-    export let cc_config
+	import CookieList from './CookieList.svelte';
+
 
 	// Methods 
 	function checkConsent() {
@@ -42,7 +41,10 @@
             return conf
         })
 		checkConsent()
-	})
+    })
+    
+	// Props
+    export let cc_config
 	
 </script>
 
@@ -56,11 +58,7 @@
 
         <h2 id="give-consent-title" class="cc-title">{ $config.messages.title }</h2>
         <p class="cc-intro">{ $config.messages.introduction }</p>
-        <ul class="cc-list">
-            {#each $config.messages.purposes as purpose}
-                <li class="cc-list-item">{ @html purpose }</li>
-            {/each}
-        </ul>
+        <CookieList data={$config.messages.purposes}/>
         <p class="cc-additional">{ @html $config.messages.additionalInfo }</p>
         <p class="cc-actions">
             <button on:click={ sayYes } aria-controls="cookie-consent-diag" class="cc-accept">{ $config.messages.acceptButtonTxt }</button>

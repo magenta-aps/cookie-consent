@@ -28,8 +28,21 @@
 				title: 'Samtykke til brug af cookies',
 				introduction: 'Vi vil gerne gemme cookies i din browser til følgende formål:',
 				purposes: [
-					'Så Giant Corp(tm) kan lave analyse på webtrafik og andre ting, som vi faktisk ikke helt har styr på. Giant Corp(tm) cookie udløber 31-12-2020',
-            		'Så Faceless(tm) kan samle data og give dig målrettede reklamer. Faceless(tm) localstorage data forbliver indtil du rydder din cache.'
+					{
+						general: 'Så Giant Corp(tm) kan lave analyse på webtrafik',
+						items: [
+							'<strong>GC</strong> cookie. Udløber efter 6 måneder.',
+							'<strong>GC_track</strong> cookie. Udløber efter 12 måneder.',
+							'<strong>GC_no_privacy</strong> værdi. Udløber aldrig.'
+						]
+					},
+					{
+						general: 'Så Faceless(tm) kan give dig målrettede reklamer',
+						items: [
+							'<strong>face_id</strong> cookie. Udløber efter 1 måned.'
+						]
+					},
+					'Så Piwik kan lave analyse på webtrafik med <strong>pw_id</strong> cookie. Udløber, når du lukker din browser.'
 				],
 				additionalInfo: 'Her bør der være et <a href="#">link til yderligere information.</a>',
 				acceptButtonTxt: 'Ja tak',
@@ -38,7 +51,7 @@
 				declinedTxt: 'afvist',
 				editConsent: 'Redigér samtykke',
 				revisionTitleDeclined: 'Øv! Du har ikke givet samtykke til cookies',
-				revisionAskToAccept: 'Vil du give samtykke til brug af cookies?',
+				revisionAskToAccept: 'Vil du give samtykke til brug af disse cookies?',
 				revisionTitleAccepted: 'Hurra! Du har givet samtykke til cookies',
 				revisionAskToDecline: 'Har du fortrudt?',
 				revisionDeclineAction: 'Træk mit samtykke tilbage',
