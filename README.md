@@ -17,7 +17,7 @@ You can simply add listeners for these events to control cookie dumping javascri
 ## How to deploy cookies and similar technologies legally
 
 *For practical purposes we use the term `cookie` for any technology that stores data on a client device.*
-This includes localstorage, InnoDB, cache storage, and the like.
+This includes cookies, localstorage, InnoDB, cache storage, and the like.
 
 To comply with EU cookie regulations and Danish cookie law in particular, your users must give you a *willing and informed consent* to storing any kind of data on their device. This is what the cookie popup component is here to do.
 
@@ -53,8 +53,8 @@ The script can appear in the _head_ or _body_ section of the page **but it must 
         localStorageId: 'mysite-cookie-consent-123456789',
         messages: { 
             purposes: [
-                'To enable GlobalFirm(tm) tracking for web analytics',
-                'For AddService(tm) to create targeted marketing'
+                'To enable GlobalFirm(tm) tracking for web analytics. These cookies will expire within 6 months.',
+                'For AddService(tm) to create targeted marketing. These cookies will expire within 30 days.'
             ],
             additionalInfo: '<a href="www.myssite.com/about-the-cookies">Go here to read the small print.</a>',
         }
@@ -63,22 +63,22 @@ The script can appear in the _head_ or _body_ section of the page **but it must 
 ```
 
 2. Add [cookie-consent.js](./dist/cookie-consent.js) to your project files and refer to it from the HTML of every page where the CCC appears. 
-Placing it at the end of the *body* section will usually be fine, but might want to put in the *head* section if you need it to execute before something else does.
+*Make sure that scripts listening for `consentgiven` or `consentdeclined` events are initialized BEFORE cookie-consent script.* 
+You can achieve this by adding a script tag to the very end of your body section or using the `defer` attribute when placing the script in the head section.
 ```
 <!DOCTYPE html>
 <html>
     <head>
         ...
-        <!-- Add script tag to head ... -->
-        <script src="./cookie-consent.js">
+        <!-- Add script tag to head using defer ... -->
+        <script defer src="./cookie-consent.js">
         ...
     </head>
 
     <body>
         ...
-        <!-- ... Or add script tag to body -->
+        <!-- ... or add script tag to end of body -->
         <script src="./cookie-consent.js"></script>
-        ...
     </body>
 </html>
 ```
@@ -109,6 +109,7 @@ document.addEventListener('consentdeclined', function() {
     // Stop scripts from saving data and clean up existing cookies/localstorage/etc.
 })
 ```
+Remember that all listeners should be initialized BEFORE the cookie-consent script is executed.
 
 
 ### CCC configuration
