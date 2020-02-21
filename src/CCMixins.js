@@ -60,7 +60,9 @@ function clearCookies() {
     })
 
     function delCookie(name) {
-        document.cookie = `${ name }=; expires=Thu, 01 Jan 1970 00:00:00 GMT;`
+        document.addEventListener('load', function() {
+            document.cookie = `${ name }=; expires=Thu, 01 Jan 1970 00:00:00 GMT;`
+        })
     }
     if (del_cookies) { // If cookie names were supplied, only delete cookies with those names
         const select_cookies = all_cookie_names.filter(function(cookie) {
