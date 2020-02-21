@@ -47,7 +47,34 @@ function dispatch(consent_boolean) {
     if (consent_boolean === true) {
         document.dispatchEvent(ev_give)
     } else if (consent_boolean === false) {
+        clearCookies()
         document.dispatchEvent(ev_decline)
+    }
+}
+
+function clearCookies() {
+    
+    const del_cookies = conf.delete_cookies_on_decline
+    const all_cookie_names = document.cookie.split(' ').map(function(c) {
+        return c.split('=')[0]
+    })
+
+    function delCookie(name) {
+        document.cookie = `${ name }=; expires=Thu, 01 Jan 1970 00:00:00 GMT;`
+    }
+    if (del_cookies) { // If cookie names were supplied, only delete cookies with those names
+        const select_cookies = all_cookie_names.filter(function(cookie) {
+            return del_cookies.find(function(cn) {
+                return cn === cookie
+            })
+        })
+        select_cookies.forEach(function(name) {
+            delCookie(name)
+        })
+    } else { // Just delete all the cookies
+        all_cookie_names.forEach(function(name) {
+            delCookie(name)
+        })
     }
 }
 
