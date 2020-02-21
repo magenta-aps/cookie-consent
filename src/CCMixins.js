@@ -59,24 +59,34 @@ function clearCookies() {
         return c.split('=')[0]
     })
 
-    function delCookie(name) {
+    function delCookies(names) {
         document.addEventListener('load', function() {
-            document.cookie = `${ name }=; expires=Thu, 01 Jan 1970 00:00:00 GMT;`
+            names.forEach(function(name) {
+                // Deletes cookie of that name
+                document.cookie = `${ name }=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`
+
+                // Also deletes localStorage items of that name
+                if (localStorage.getItem(name)) { 
+                    localStorage.setItem(name, '')
+                }
+
+                // Also deletes sessionStorage items of that name
+                if (sessionStorage.getItem(name)) {
+                    sessionStorage.setItem(name, '')
+                }
+            })
         })
     }
+    
     if (del_cookies) { // If cookie names were supplied, only delete cookies with those names
         const select_cookies = all_cookie_names.filter(function(cookie) {
             return del_cookies.find(function(cn) {
                 return cn === cookie
             })
         })
-        select_cookies.forEach(function(name) {
-            delCookie(name)
-        })
+        delCookies(select_cookies)
     } else { // Just delete all the cookies
-        all_cookie_names.forEach(function(name) {
-            delCookie(name)
-        })
+        delCookies(all_cookie_names)
     }
 }
 
