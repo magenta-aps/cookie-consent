@@ -133,16 +133,23 @@ var cookie_consent_config = {
 
         /* 
          * MANDATORY:
-         * purposes is an array of strings. 
-         * Each string should detail:
+         * purposes is an array of objects with 'general' information and a list of 'items' strings.
+         * 'items' should detail information on specific cookies or storage items
+         * Each object should detail:
          *   WHO is storing data
          *   WHAT purpose the stored data is for
          *   HOW LONG the data will be stored (cookie expiry date)
          */
         purposes: [
-            'Så Giant Corp(tm) kan lave analyse på webtrafik og andre ting, som vi faktisk ikke helt har styr på. Giant Corp(tm) cookie udløber 31-12-2020',
-            'Så Faceless(tm) kan samle data og give dig målrettede reklamer. Faceless(tm) localstorage data forbliver indtil du rydder din cache.'
-        ],
+            {
+                general: 'Så Giant Corp(tm) kan lave analyse på webtrafik',
+                items: [
+                    '<strong>GC</strong> cookie. Udløber efter 6 måneder.',
+                    '<strong>GC_track</strong> cookie. Udløber efter 12 måneder.',
+                    '<strong>GC_no_privacy</strong> værdi. Udløber aldrig.'
+                ]
+            }
+        ]
 
         /* 
          * MANDATORY:
