@@ -238,6 +238,7 @@ var cookie_consent_config = {
      * those will be deleted too.
      * 
      * Default is 'false'
+     * Set to 'true' if you want to delete all cookies (within javascript restrictions)
      */
     delete_cookies_on_decline: [
         'cookie_name', 
