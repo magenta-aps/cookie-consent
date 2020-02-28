@@ -227,7 +227,24 @@ var cookie_consent_config = {
          * Label for the button to close the secondary dialog
          */        
         revisionCloseDiag: 'Luk dialogboks'
-    }
+    },
+
+    /* 
+     * OPTIONAL:
+     * delete_cookies_on_decline is an array of string names of specific cookies
+     * that you'll want deleted on 'consentdeclined' event.
+     * 
+     * If you add name strings for localStorage or sessionStorage items,
+     * those will be deleted too.
+     * 
+     * Default is 'false'
+     * Set to 'true' if you want to delete all cookies (within javascript restrictions)
+     */
+    delete_cookies_on_decline: [
+        'cookie_name', 
+        'localstorage_item_name',
+        'sessionstorage_item_name'
+    ]
 }
 ```
 

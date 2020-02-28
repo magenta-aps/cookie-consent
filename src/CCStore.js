@@ -27,5 +27,6 @@ export const config = writable({
         revisionAskToDecline: 'Du har givet samtykke til brug af cookies. Har du fortrudt?',
         revisionDeclineAction: 'Træk mit samtykke tilbage',
         revisionCloseDiag: 'Luk samtykke-box'
-    }
+    },
+    delete_cookies_on_decline: false
 })

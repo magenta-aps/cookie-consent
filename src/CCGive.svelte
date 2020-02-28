@@ -37,7 +37,10 @@
 				for (let m in cc_config.messages) {
 					conf.messages[m] = cc_config.messages[m]
 				}
-			}
+            }
+            if (cc_config.delete_cookies_on_decline) {     
+                conf.delete_cookies_on_decline = cc_config.delete_cookies_on_decline
+            }   
             return conf
         })
 		checkConsent()

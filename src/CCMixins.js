@@ -48,6 +48,55 @@ function dispatch(consent_boolean) {
         document.dispatchEvent(ev_give)
     } else if (consent_boolean === false) {
         document.dispatchEvent(ev_decline)
+        clearCookies()
+    }
+}
+
+function clearCookies() {
+
+    const del_cookies = conf.delete_cookies_on_decline
+    const all_cookie_names = document.cookie.split(' ').map(function(c) {
+        return c.split('=')[0]
+    })
+
+    function parseDomain(hostname) {
+        var d = hostname.split('.')
+        if (d.length > 1) {
+            d[0] = ''
+            return d.join('.')
+        } else {
+            return hostname
+        }
+    }
+
+    function deleteData(names) {
+        document.addEventListener('load', function() {
+            names.forEach(function(name) {
+                // Try to delete cookie of that name
+                document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=' + parseDomain(location.hostname)
+
+                // Also resets localStorage items of that name
+                if (localStorage.getItem(name)) { 
+                    localStorage.setItem(name, '')
+                }
+
+                // Also resets sessionStorage items of that name
+                if (sessionStorage.getItem(name)) {
+                    sessionStorage.setItem(name, '')
+                }
+            })
+        })
+    }
+    
+    if (typeof(del_cookies) === 'object') { // If cookie names were supplied, only delete cookies with those names
+        const select_cookies = all_cookie_names.filter(function(cookie) {
+            return del_cookies.find(function(cn) {
+                return cn === cookie
+            })
+        })
+        deleteData(select_cookies)
+    } else if (del_cookies === true) { // Delete all the cookies
+        deleteData(all_cookie_names)
     }
 }
 
