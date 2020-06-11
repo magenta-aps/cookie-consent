@@ -11,7 +11,7 @@
 </script>
 
 <div class="cc-multilevel-list cc-sublist-toggled-{ toggle_state}">
-    <button class="cc-sublist-header" on:click={toggle}>{ @html data.general }</button>
+    <button class="cc-sublist-header" aria-expanded="{toggle_state}" on:click={toggle}>{ @html data.general }</button>
     {#if toggle_state}
         <ul class="cc-sublist">
             {#each data.items as item}
